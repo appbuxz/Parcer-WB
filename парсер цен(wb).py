@@ -2,7 +2,7 @@ import asyncio
 from playwright.async_api import async_playwright
 from datetime import datetime
 
-async def main():
+async def page():
     async with async_playwright() as p:
         # Запуск браузера Firefox
         browser = await p.firefox.launch()
@@ -48,6 +48,12 @@ async def main():
 def txtprint(formatted_time, pricetext):
     with open(r'C:\VS CODE\py\data.txt', 'a', encoding='utf-8') as f:  # Обратите внимание на 'r' перед строкой пути
         f.write(f"Дата и время: {formatted_time}, Цена товара: {pricetext}\n")
+
+async def main():
+    while True:
+        await page()
+        print("Ждем час до следующего запуска...")
+        await asyncio.sleep(3600)  # Ждем 1 часb
 
 # Основная программа
 if __name__ == "__main__":
